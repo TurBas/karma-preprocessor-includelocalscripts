@@ -1,6 +1,6 @@
 {
   "name": "karma-preprocessor-includelocalscripts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Karma preprocessor that includes JS files from <script> tags from html",
   "main": "index.js",
   "dependencies": {
