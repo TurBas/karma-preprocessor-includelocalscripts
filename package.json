@@ -1,0 +1,34 @@
+{
+  "name": "karma-preprocessor-includelocalscripts",
+  "version": "0.1.0",
+  "description": "Karma preprocessor that includes JS files from <script> tags from html",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "~0.12.4",
+    "lodash": "^4.0.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.15.1"
+  },
+  "scripts": {
+    "test": "mocha test/test.js -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/turbas/karma-preprocessor-includelocalscripts.git"
+  },
+  "keywords": [
+    "karma",
+    "karma-plugin",
+    "karma-preprocessor",
+    "scripts"
+  ],
+  "author": {
+    "name": "Michel van der Weide"
+  },
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/turbas/karma-preprocessor-includelocalscripts/issues"
+  }
+}
