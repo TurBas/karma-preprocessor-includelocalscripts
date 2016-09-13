@@ -1,20 +1,20 @@
 var cheerio = require('cheerio'),
-    fs      = require('fs'),
-    _       = require('lodash');
+    fs = require('fs'),
+    _ = require('lodash');
 
 module.exports = function (config, content, file, list, logger) {
-    var html    = cheerio.load(content),
-        paths   = [],
-        files   = config.files   || [],
+    var html = cheerio.load(content),
+        paths = [],
+        files = config.files || [],
         exclude = config.exclude || [];
 
     html('script').each(function (index, obj) {
-        var src = obj.attribs.src;
+        var src = (config.basePath && config.basePath.length > 0) ? config.basePath + '/' + obj.attribs.src : obj.attribs.src;
 
         if (src) {
             if (!src.match(/^http/) && !src.match(/^\/\//)) {
                 paths.push(fs.realpathSync(src));
-	        } else {
+            } else {
                 logger.debug('skipping script: ' + src);
             }
         }
@@ -26,7 +26,7 @@ module.exports = function (config, content, file, list, logger) {
     function addPathsToFileList(paths) {
         if (paths.length) {
             paths = paths.reverse();
-            var index = _.findIndex(files, {pattern: file.originalPath});
+            var index = _.findIndex(files, { pattern: file.originalPath });
             files.splice(index, 1);
             _.each(paths, function (path) {
                 files.splice(index, 0, {
