@@ -6,15 +6,17 @@ module.exports = function (config, content, file, list, logger) {
     var html    = cheerio.load(content),
         paths   = [],
         files   = config.files   || [],
-        exclude = config.exclude || [];
+        exclude = config.exclude || [],
+        customAttribName = config.includelocalscripts || 'src';
 
     html('script').each(function (index, obj) {
-        var src = obj.attribs.src;
+        var src    = obj.attribs.src,
+            custom = obj.attribs[customAttribName];
 
-        if (src) {
+        if (src && custom) {
             if (!src.match(/^http/) && !src.match(/^\/\//)) {
                 paths.push(fs.realpathSync(src));
-	        } else {
+            } else {
                 logger.debug('skipping script: ' + src);
             }
         }

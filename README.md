@@ -34,6 +34,22 @@ preprocessors: {
 },
 ```
 
+Optionally pass a parameter with an attribute name to check against within the HTML. Only scripts with that attribute will be included.
+
+Eg only the first script will be included
+
+Karma Config
+
+```js
+includelocalscripts: 'unit-test'
+```
+
+HTML Page
+
+```HTML
+<script unit-test="true" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+```
 
 ## Note on order
 
