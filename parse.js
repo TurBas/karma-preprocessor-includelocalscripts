@@ -13,6 +13,11 @@ module.exports = function (config, content, file, list, logger) {
 
         if (src) {
             if (!src.match(/^http/) && !src.match(/^\/\//)) {
+                var endUrl = src.indexOf('?');
+                if (endUrl == -1) {
+                    endUrl = src.length;
+                }
+                src = src.substring(0, endUrl);
                 paths.push(fs.realpathSync(src));
 	        } else {
                 logger.debug('skipping script: ' + src);
