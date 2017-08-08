@@ -10,11 +10,16 @@ describe('includelocalscripts', function () {
                         '<script src="//secondUrl.com"></script>' +
                         '<script src="./test/first.js"></script>' +
                         '<script src="test/second.js"></script>' +
+                        '<script src="./test/third.js?p1=1&p2=2"></script>' +
+                        '<script src="test/four.js?p3=3"></script>' +
                    '</head>' +
                '</html>';
 
     var baseDir = __dirname;
-    var urls = [ path.join(baseDir + '/first.js'), path.join(baseDir + '/second.js') ];
+    var urls = [ path.join(baseDir + '/first.js'),
+                 path.join(baseDir + '/second.js'), 
+                 path.join(baseDir + '/third.js'), 
+                 path.join(baseDir + '/four.js')];
     var config = { filePrefix: 'dist/' };
     var file = { originalPath: ''};
     var list = { reload: function(files) { return files; }};

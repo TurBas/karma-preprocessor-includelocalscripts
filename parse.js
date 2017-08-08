@@ -13,6 +13,11 @@ module.exports = function (config, content, file, list, logger) {
 
         if (src) {
             if (!src.match(/^http/) && !src.match(/^\/\//)) {
+                var endUrl = src.indexOf('?');
+                if (endUrl == -1) {
+                    endUrl = src.length;
+                }
+                src = src.substring(0, endUrl);
                 paths.push(fs.realpathSync(src));
 	        } else {
                 logger.debug('skipping script: ' + src);
@@ -25,7 +30,8 @@ module.exports = function (config, content, file, list, logger) {
 
     function addPathsToFileList(paths) {
         if (paths.length) {
-            paths = paths.reverse();
+            //paths = paths.reverse();
+
             var index = _.findIndex(files, {pattern: file.originalPath});
             files.splice(index, 1);
             _.each(paths, function (path) {
@@ -36,6 +42,7 @@ module.exports = function (config, content, file, list, logger) {
                     watched: true,
                     nocache: false
                 });
+                index = index +1;
             });
         }
     }
