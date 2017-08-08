@@ -35,7 +35,6 @@ module.exports = function (config, content, file, list, logger) {
             var index = _.findIndex(files, {pattern: file.originalPath});
             files.splice(index, 1);
             _.each(paths, function (path) {
-                index = index +1;
                 files.splice(index, 0, {
                     pattern: path,
                     served: true,
@@ -43,6 +42,7 @@ module.exports = function (config, content, file, list, logger) {
                     watched: true,
                     nocache: false
                 });
+                index = index +1;
             });
         }
     }
